@@ -1,0 +1,87 @@
+openapi: "3.0.2"
+info:
+  title: Plants Galore API
+  version: "1.0"
+paths:
+  /plants:
+    description: All the plants
+    get:
+      summary: Lists all the plants 
+      description: |
+        Lists all the plants
+        alphabetically.
+      responses:
+        "200":
+          description: Successfully returned all the plants.
+        "400":
+          description: Bad Request.
+    post:
+      summary: Adds a new plant
+      description: |
+        Creates a plant 
+      responses:
+        "201":
+          description: Successfully added a new plant.
+        "400":
+          description: Bad Request. The content in the body of the request is malformed or missing.
+  /plants/{id}:
+    description: Plant information based on the id
+    get:
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      summary: Returns plant information
+      description: |
+        Returns the plant information based on the id.
+      responses:
+        "200":
+          description: Successfully returned the plant information/content.
+        "400":
+          description: Bad Request.
+    put:
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      summary: Updates plant's title and description 
+      description: Updates plant's title and description based on the id
+      responses:
+        "200":
+          description: Successfully updated the plant description and title.
+        "400":
+          description: Bad Request. The content in the body of the request is malformed or missing.
+    delete:
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      summary: Deletes the plant associated with the id
+      description: Deletes the plant associated with the id from the parameters
+      responses:
+        "200":
+          description: Successfully deleted the plant.
+        "400":
+          description: Bad Request. The content in the body of the request is malformed or missing.
+  /plants/title/{title}:
+    description: Plant information based on the title
+    get:
+      parameters:
+        - in: path
+          name: title
+          required: true
+          schema:
+            type: string
+      summary: Returns list of plants that matches the title from the parameter
+      description: Returns a list of plants that matches the title
+      responses: 
+        "200":
+          description: Successfully returned all the plants information matching the title.
+        "400":
+          description: Bad Request.
